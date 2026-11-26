@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0B0F19"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#111827"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="14dp">
+
+        <TextView
+            android:id="@+id/tvHeaderTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Kiko AI v1.0.0"
+            android:textColor="#38BDF8"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#064E3B"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="4dp"
+            android:text="USER IN CONTROL"
+            android:textColor="#34D399"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0F172A"
+        app:tabIndicatorColor="#38BDF8"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="#38BDF8"
+        app:tabTextColor="#94A3B8">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1. Hybrid AI" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2. Code &amp; Gate" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3. Versions" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4. APK Install" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/panelChat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/etApiKey"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#1E293B"
+                    android:hint="Cloud API Key (Optional - Offline works without key)"
+                    android:inputType="textPassword"
+                    android:padding="12dp"
+                    android:textColor="#F8FAFC"
+                    android:textColorHint="#64748B" />
+
+                <CheckBox
+                    android:id="@+id/cbForceOffline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Force Offline Commands Only"
+                    android:textColor="#CBD5E1" />
+
+                <TextView
+                    android:id="@+id/tvChatLog"
+                    android:layout_width="match_parent"
+                    android:layout_height="260dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#0F172A"
+                    android:padding="12dp"
+                    android:text="[SYSTEM] Ready. Try offline commands: status, time, version, help
+"
+                    android:textColor="#E2E8F0"
+                    android:textSize="13sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/etPrompt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#1E293B"
+                        android:hint="Ask AI or run offline command..."
+                        android:padding="12dp"
+                        android:textColor="#F8FAFC"
+                        android:textColorHint="#64748B" />
+
+                    <Button
+                        android:id="@+id/btnSendPrompt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:backgroundTint="#38BDF8"
+                        android:text="Send"
+                        android:textColor="#090D16" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/panelCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Instruction-Only Code Modification"
+                    android:textColor="#38BDF8"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etInstruction"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="#1E293B"
+                    android:hint="Explicit User Instruction (Required)"
+                    android:padding="12dp"
+                    android:textColor="#F8FAFC"
+                    android:textColorHint="#64748B" />
+
+                <EditText
+                    android:id="@+id/etTargetModule"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="#1E293B"
+                    android:hint="Target Module Name"
+                    android:padding="12dp"
+                    android:text="CustomSkillModule.kt"
+                    android:textColor="#F8FAFC" />
+
+                <EditText
+                    android:id="@+id/etProposedCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#1E293B"
+                    android:gravity="top"
+                    android:inputType="textMultiLine"
+                    android:padding="12dp"
+                    android:text="fun runCustomSkill(): String {
+    return &quot;Executed under strict User Control!&quot;
+}"
+                    android:textColor="#A5F3FC"
+                    android:typeface="monospace" />
+
+                <Button
+                    android:id="@+id/btnRunGates"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="#38BDF8"
+                    android:text="1. Run Error Check, Security Test &amp; Code Review"
+                    android:textColor="#090D16" />
+
+                <TextView
+                    android:id="@+id/tvGateReport"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="#0F172A"
+                    android:padding="12dp"
+                    android:text="Pre-Release Gate Report will appear here..."
+                    android:textColor="#CBD5E1"
+                    android:textSize="12sp" />
+
+                <CheckBox
+                    android:id="@+id/cbCodeReviewDone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Confirm Code Review Completed"
+                    android:textColor="#F8FAFC" />
+
+                <CheckBox
+                    android:id="@+id/cbFeatureApproved"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Approve New Feature (Creates Backup First, Then New Version)"
+                    android:textColor="#34D399" />
+
+                <Button
+                    android:id="@+id/btnReleaseVersion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="#10B981"
+                    android:enabled="false"
+                    android:text="2. Backup &amp; Create New Version"
+                    android:textColor="#041B11" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/panelHistory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Maintained Version History &amp; Backup Snapshots"
+                    android:textColor="#38BDF8"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvHistoryList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="#0F172A"
+                    android:padding="12dp"
+                    android:textColor="#E2E8F0"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/panelApk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Android-Approved APK Installation Process"
+                    android:textColor="#38BDF8"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Uses Android PackageInstaller.Session. Requires explicit user consent and OS system dialog confirmation."
+                    android:textColor="#94A3B8"
+                    android:textSize="12sp" />
+
+                <CheckBox
+                    android:id="@+id/cbApkUserConsent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="User Consent: Authorize Android OS PackageInstaller UI"
+                    android:textColor="#F8FAFC" />
+
+                <Button
+                    android:id="@+id/btnSelectAndInstallApk"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="#38BDF8"
+                    android:text="Select Signed .APK &amp; Launch Android Installer"
+                    android:textColor="#090D16" />
+
+                <TextView
+                    android:id="@+id/tvApkStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="#0F172A"
+                    android:padding="12dp"
+                    android:text="Awaiting user action..."
+                    android:textColor="#A5F3FC"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </FrameLayout>
+    </ScrollView>
+</LinearLayout>
